@@ -22,4 +22,8 @@ class User < ApplicationRecord
 
   validates :dob, presence: true
 
+#ASSOCIATION
+  has_many :items
+  has_many :orders
+
 end
