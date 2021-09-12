@@ -2,6 +2,11 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
   belongs_to :user
+  belongs_to :category
+  belongs_to :status
+  belongs_to :charge
+  belongs_to :prefecture
+  belongs_to :datetime
   has_one :order
   has_one_attached :image
 
@@ -17,5 +22,5 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :day_id
   end
-  
+
 end
