@@ -20,7 +20,7 @@ class Item < ApplicationRecord
     validates :status_id
     validates :charge_id
     validates :prefecture_id
-    validates :day_id
+    validates :datetime_id
   end
 
 end
