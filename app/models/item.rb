@@ -12,7 +12,10 @@ class Item < ApplicationRecord
 
 
   with_options presence: true do
-    validates :name
+    validates :name, length: { maximum: 40 }
+    validates :detail, length: { maximum: 1000 }
+    validates :price, format: { with: /\A[0-9]+\z/ }, inclusion: { in: 300..9_999_999 }
+    validates :image
   end
 
   with_options numericality: { other_than: 1, message: "can't be blank" } do
