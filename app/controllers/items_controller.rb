@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  #before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update]
+  before_action :redirect_root, only: [:edit, :update]
 
   def index
     @items = Item.order("created_at DESC")
@@ -20,32 +21,18 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
-    if 
-      user_signed_in? && current_user.id == @item.user_id
-    else
-      redirect_to root_path
-    end
   end
   
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to item_path(@item.id)
     else
       render :edit
     end
 
-    if 
-      user_signed_in? && current_user.id == @item.user_id
-    else
-      redirect_to root_path
-    end
-    
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   private
@@ -54,16 +41,16 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :price, :user, :detail, :category_id, :status_id, :charge_id, :datetime_id, :prefecture_id, :image).merge(user_id: current_user.id)
   end
   
-  # def set_item
-  #   @item = Item.find(params[:id])
-  # end
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
-  # def redirect_root
-  #   if 
-  #     user_signed_in? && current_user.id == @item.user_id
-  #   else
-  #     redirect_to root_path
-  #   end
-  # end
+  def redirect_root
+    if 
+      current_user.id == @item.user_id
+    else
+      redirect_to root_path
+    end
+  end
   
 end
