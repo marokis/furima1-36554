@@ -1,4 +1,4 @@
-<%# <div class="items-sell-contents">%>
+<div class="items-sell-contents">
   <header class="items-sell-header">
     <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
   </header>
@@ -130,7 +130,7 @@
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
       <%= f.submit "変更する" ,class:"sell-btn" %>
-      <%= link_to 'もどる', item_path(@item.id), class:"back-btn" %>
+      <%=link_to 'もどる', item_path(@item.id), class:"back-btn" %>
     </div>
     <%# /下部ボタン %>
   </div>
