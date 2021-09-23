@@ -13,6 +13,7 @@ const pay = () => {
       exp_year: `20${formData.get("order_address[exp_year]")}`,
       cvc: formData.get("order_address[cvc]"),
     };
+    console.log(card);
 
     Payjp.createToken(card, (status, response) => {
       if (status == 200) {
@@ -27,7 +28,7 @@ const pay = () => {
       document.getElementById("card-exp-year").removeAttribute("name");
       document.getElementById("card-cvc").removeAttribute("name");
 
-      document.getElementById("charge-form").submit();
+      // document.getElementById("charge-form").submit();
     });
   });
 };
